@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <title>နေကုန်ကီး ပြန်ပြစာမျက်နှာ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      background-color: #f0f0f0;
+    }
+    .container {
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .keytitle {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .keyclass {
+      font-size: 20px;
+      color: #555;
+      margin-top: 10px;
+    }
+    .say {
+      margin-top: 15px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="keytitle" class="keytitle">Loading...</div>
+    <div id="keyclass" class="keyclass"></div>
+    <div id="say" class="say"></div>
+  </div>
+
+  <script>
+    async function fetchData() {
+      try {
+        const response = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://fine1997.github.io/keyapi/"));
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+
+        const keytitle = doc.querySelector(".keytitle")?.textContent || "N/A";
+        const keyclass = doc.querySelector(".keyclass")?.textContent || "N/A";
+        const say = doc.querySelector(".say")?.textContent || "N/A";
+
+        document.getElementById("keytitle").textContent = keytitle;
+        document.getElementById("keyclass").textContent = keyclass;
+        document.getElementById("say").textContent = say;
+      } catch (error) {
+        document.getElementById("keytitle").textContent = "Error loading data.";
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+    setInterval(fetchData, 10000); // Refresh every 10 seconds
+  </script>
+</body>
+</html>
