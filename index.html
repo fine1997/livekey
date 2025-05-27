@@ -39,6 +39,13 @@
       font-size: 20px;
       color: #0a7f36;
     }
+
+    .sayb {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #0a7f36;
+    }
+    
   </style>
 </head>
 <body>
@@ -46,6 +53,7 @@
     <div id="keytitle" class="keytitle">Loading...</div>
     <div id="keyclass" class="keyclass"></div>
     <div id="say" class="say"></div>
+    <div id="sayb" class="sayb"></div>
   </div>
 
   <script>
@@ -59,10 +67,12 @@
         const keytitle = doc.querySelector(".keytitle")?.textContent || "N/A";
         const keyclass = doc.querySelector(".keyclass")?.textContent || "N/A";
         const say = doc.querySelector(".say")?.textContent || "N/A";
+        const sayb = doc.querySelector(".sayb")?.textContent || "N/A";
 
         document.getElementById("keytitle").textContent = keytitle;
         document.getElementById("keyclass").textContent = keyclass;
         document.getElementById("say").textContent = say;
+        document.getElementById("sayb").textContent = sayb;
       } catch (error) {
         document.getElementById("keytitle").textContent = "Error loading data.";
         console.error("Error fetching data:", error);
